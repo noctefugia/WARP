@@ -1,0 +1,76 @@
+// See https://go.microsoft.com/fwlink/?LinkId=733558
+// for the documentation about the tasks.json format
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build All",
+            "detail": "Build all projects in the solution",
+            "type": "shell",
+            "command": "${workspaceFolder}\\WARP_build.bat",
+            "args": ["skip"],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": {
+                    "label" : "$(issue-reopened) ALL",
+                }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Current",
+            "detail": "Builds the current project only",
+            "type": "shell",
+            "command": "${workspaceFolder}\\${relativeFileDirname}\\build.bat",
+            "args": ["skip"],
+            "options": {
+                "cwd": "${workspaceFolder}\\${relativeFileDirname}",
+                "statusbar": {
+                    "label" : "$(issue-reopened) CUR",
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Run WARP",
+            "detail": "Run desktop shortcut for WARP quick-test",
+            "type": "shell",
+            "command": "cmd.exe",
+            "args": [
+                "/c",
+                "call",
+                "${env:USERPROFILE}\\Desktop\\WARP.lnk"
+            ],
+            "options": {
+                "statusbar": {
+                    "label" : "$(play) WARP",
+                }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Run WARP Manager",
+            "detail": "Run desktop shortcut for WARP manager quick-test",
+            "type": "shell",
+            "command": "cmd.exe",
+            "args": [
+                "/c",
+                "call",
+                "${env:USERPROFILE}\\Desktop\\WARP manager.lnk"
+            ],
+            "options": {
+                "statusbar": {
+                    "label" : "$(play) WARP-M",
+                    "filePattern" : "manager.c",
+                }
+            },
+            "problemMatcher": []
+        }
+        
+        
+    ]
+}

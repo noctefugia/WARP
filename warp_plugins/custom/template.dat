@@ -1,0 +1,62 @@
+// Basic plugin structure. Use it to avoid polluting the global namespace.
+typedef struct {
+    MB_CODENAME uid;	// plugin unique ID
+    int my_var1;		// place your data here
+    // ...
+} SSSSSSSS_t;
+SSSSSSSS_t SSSSSSSS;
+
+
+// Mission frame: called on each tick before module system triggers.
+MB_ERROR SSSSSSSS_FrameMove(void)
+{
+    // Get mission pointer
+    mbMission *mission = *ppg_mission;
+    ENSURE(mission != NULL);
+
+    if (mission->m_frameNo == 1) {
+        // Code to execute on the first frame:
+        MB_MESSAGE_F(0xFFFFFFFF, "Plugin SSSSSSSS first frame.");
+    } else {
+        // Code to execute on each frame
+    }
+
+    return 0;
+}
+
+
+// Statement execution: custom operator handler.
+MB_ERROR SSSSSSSS_StatementExecute(MB_OPERATION *pOperation)
+{
+    // Handle the statement here:
+	MB_MESSAGE_F(0xFFFFFFFF, "Plugin SSSSSSSS operation: 0x%016llX, n=%d, operands=[%lld, %lld, %lld, %lld]\n", pOperation->opcode, pOperation->numOperands, pOperation->operands[0], pOperation->operands[1], pOperation->operands[2], pOperation->operands[3]);
+	
+    return 0;
+}
+
+
+// Exit routine: called on plugin fail/termination/recompilation.
+void SSSSSSSS_Exit(void)
+{
+    // Add your cleanup code here:
+    MBEX_PRINTF("Plugin SSSSSSSS exit!");
+}
+
+
+// Entry routine: called each time after compilation. Must return plugin ID.
+MB_CODENAME SSSSSSSS_Init(MB_CALLBACK *pCallback)
+{
+    // Assign unique id (do not change):
+    MB_PLUGIN_INIT(SSSSSSSS, 0xCCCCCCCCCCCCCCCC);
+
+    // Setup callbacks:
+    pCallback->Exit = &SSSSSSSS_Exit;
+    pCallback->mission.FrameMove = &SSSSSSSS_FrameMove;
+    pCallback->StatementExecute = &SSSSSSSS_StatementExecute;
+
+    // Initialize your code here:
+    SSSSSSSS.my_var1 = 123;
+    MBEX_PRINTF("Hello, plugin SSSSSSSS! %d", SSSSSSSS.my_var1);
+
+    return SSSSSSSS.uid;
+}

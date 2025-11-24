@@ -1,0 +1,26 @@
+{
+	
+	"Custom Header": {
+		"prefix": "-hcapt",
+		"body": [
+			"/*",
+			"\tProject: ${WORKSPACE_NAME} | (C) SHOCKERFACE, ${CURRENT_MONTH_NAME} ${CURRENT_YEAR}",
+			"\tFile: ${TM_FILENAME}",
+			"\tDescription: ${1:file description}",
+			"*/\n"
+		],
+		"description": "Print custom caption for header file"
+	},
+	
+	"Header File": {
+		"prefix": "-htempl",
+		"body": [
+			"#ifndef _${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H_",
+			"#define _${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H_",
+			"",
+			"#endif /* _${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H_ */"
+		],
+		"description": "Print header file"
+	}
+	
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WARP Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <h1>WARP Documentation</h1>
+    <p>
+        <strong>WARP</strong> (<em>Warband Advanced Runtime Patcher</em>) is an experimental tool that pushes the boundaries of modding for Mount and Blade: Warband with WSE2. It allows you to modify the game engine in real-time, essentially changing how the game functions on the fly.
+    </p>
+    <p>
+        <strong>WARP</strong> achieves this by utilizing a lightweight compiler (TCC) to compile itself from sources and execute C-code dynamically, a process known as JIT-compilation. By analyzing debug information (a *.pdb file that comes with each version of WSE2), <strong>WARP</strong> can partially reconstruct the game's source code. This, combined with dynamic compilation, enables deep-level alterations to the engine's behavior.
+    </p>
+    <p>
+        The plugin system makes it easy to manage these modifications. Each "patch" is a separate plugin, allowing you to enable, disable, and configure them independently through a user-friendly GUI manager.
+    </p>
+    <p>
+        <a href="https://bellard.org/tcc/">TCC compiler homepage</a>
+    </p>
+</body>
+</html>

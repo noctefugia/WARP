@@ -1,0 +1,40 @@
+This extension adds a simple operator that allows user to call the command line (cmd.exe) from the game.
+
+# Here module system constants:
+WARP = 3026
+C_CMDEXE = 0x435F434D44455845
+
+# Here test trigger:
+        (ti_before_mission_start, 0, 0, [],
+        [
+            (store_wse_version, ":warp_ver", 0),
+            (try_begin),
+                (ge, ":warp_ver", 0xFF),  # WARP VERSION FORMAT: 0x00AABBCC [00 - EMPTY, AA - MAJOR, BB - MINOR, CC - PATCH]
+                (assign, "$g_warp", 1),
+                (display_message, "@WARP detected."),
+            (else_try),
+                (assign, "$g_warp", 0),
+                (display_message, "@WARP not enabled."),
+            (try_end),
+        ]),
+         
+        (3, 0, ti_once, [(eq, "$g_warp", 1)],
+        [
+            (assign, reg0, 12345),
+            
+            (try_for_range, ":mode", 0, 2),
+                (try_begin),
+                    (eq, ":mode", 0),
+                    (str_store_string, s1, "@invalid.exe"),
+                (else_try),
+                    (str_store_string, s1, "@calc.exe"),
+                (try_end),
+                (WARP, C_CMDEXE, s1),
+                (try_begin),
+                    (eq, reg0, 0), #return code, 0 = ok
+                    (display_message, "@{s1} started!"),
+                (else_try),
+                    (display_message, "@unable to start {s1}"),
+                (try_end),
+            (try_end),
+        ]),

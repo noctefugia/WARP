@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"pdb_symbol.h": "c",
+			"library_def.h": "c",
+			"common.h": "c",
+			"psapi.h": "c",
+			"lib_common.h": "c",
+			"windows.h": "c",
+			"stdio.h": "c",
+			"tlhelp32.h": "c",
+			"dbghelp.h": "c",
+			"stdlib.h": "c",
+			"ctype.h": "c",
+			"direct.h": "c",
+			"jit_compiler.h": "c",
+			"stdbool.h": "c",
+			"libtcc.h": "c"
+		}
+	}
+}
